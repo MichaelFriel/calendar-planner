@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
 const currentDate = dayjs();
+const currentHour = dayjs().hour();
+console.log(currentHour);
 const formattedDate = currentDate.format("dddd, MMMM D, YYYY");
 const currentDateEL = document.querySelector('#currentDay')
 const descriptionEL = document.querySelector('.description');
@@ -19,12 +21,34 @@ schedule += `
         <div class="col-1 hour">
           <strong>${times[i]}</strong>
       </div>
-            <textarea class="col-10 description" id="input-${times[i]}"></textarea>
+            <textarea class="col-10 description" id="input-${times[i]}" data-time="${i}"></textarea>
               <button class="col-1 saveBtn" id ="btn-${times[i]}"><i class="fas fa-save" ></i></button>
           </div> `;
 }
 
 $('#schedule').html(schedule);
+
+// Add colours depending on time.
+
+let allSchedules = document.querySelectorAll('.description')
+console.log(allSchedules.length);
+for (let i=0; i < allSchedules.length; i++) {
+
+  let timeData = allSchedules[i].dataset.time;
+
+if (timeData < currentHour) {
+    allSchedules[i].classList.add("past");
+} else if (
+    timeData == currentHour) {
+        allSchedules[i].classList.add("present");
+} else if (
+    timeData > currentHour) {
+        allSchedules[i].classList.add("future");
+    }
+
+}
+
+// console.log(allSchedules);
 
 // Save Data 
 $('.saveBtn').click(function () {
