@@ -1,17 +1,11 @@
 $(document).ready(function() {
 
-//     var advancedFormat = require('dayjs/plugin/advancedFormat')
-// dayjs.extend(advancedFormat)
-
-
 
 const currentDate = dayjs();
 const currentHour = dayjs().hour();
 console.log(currentHour);
 const formattedDate = currentDate.format("dddd, MMMM Do, YYYY");
 let descriptionStored = ''
-const currentDateEL = document.querySelector('#currentDay')
-const descriptionEL = document.querySelector('.description');
 
 let currentDateEl = $("#currentDay");
 $(currentDateEl).html(formattedDate);
@@ -24,12 +18,12 @@ let schedule = "";
 for (let i=9; i < times.length; i++) {
 schedule += `
  <div class="row time-block">
-        <div class="col-1 hour">
-          <strong>${times[i]}</strong>
-      </div>
-            <textarea class="col-10 description" id="input-${times[i]}" data-time="${i}">${descriptionStored}</textarea>
-              <button class="col-1 saveBtn" id ="btn-${times[i]}"><i class="fas fa-save" ></i></button>
-          </div> `;
+    <div class="col-1 hour">
+        <strong>${times[i]}</strong>
+    </div>
+        <textarea class="col-10 description" id="input-${times[i]}" data-time="${i}">${descriptionStored}</textarea>
+            <button class="col-1 saveBtn" id ="btn-${times[i]}"><i class="fas fa-save" ></i></button>
+        </div> `;
 }
 
 $('#schedule').html(schedule);
@@ -58,8 +52,7 @@ if (timeData < currentHour) {
 
 $('.saveBtn').click(function () {
     let buttonID = $(this).attr('id');
-    let time = buttonID.replace('btn-', ''); // Is there a way to use jQuery here?
-    // let timeData = $()
+    let time = buttonID.replace('btn-', ''); 
 
     let description = $('#input-' + time).val();
     let key = 'Schedule - ' + time;
@@ -72,25 +65,10 @@ $('.saveBtn').click(function () {
 
     $('#input-9AM').html(localStorage.getItem("Schedule - 9AM"));
 
-    // loop through allSchedules, if local storage key = "Schedule - dataset.time", then get local storage and populate html.
-
-
-    // let descriptionStored = $('#input-(time).html(localStorage.getItem("Schedule - (time)"))
     
 })
 
 
-// let totalSchedule = JSON.parse(localStorage.getItem ("Schedule") || "[]");
-// let time = time;
-// let description = descriptionEL.value
-
-// return;
-// }
-
-// totalSchedule.push({
-//     time;
-//     description
-// })
 
 function init () {
 
@@ -121,8 +99,6 @@ function init () {
     let fivePmLocal = localStorage.getItem ("Schedule - 5PM");
     $('#input-5PM').val(fivePmLocal);
 }
-
-
 
 init ()
 
