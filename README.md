@@ -13,11 +13,11 @@ The user can input text in each hourly block and then save the text.
 * Colours of the blocks are updated using a for loop which compares the current time to the ID of the block.
 * Content from text blocks is stored in local storage and retrieved when the page is reloaded. This ensures that the content remains until the user updates it and saves the block again.
 
-**Installation Guide**
+## Installation Guide
 
 To review the quiz, please follow this URL: https://michaelfriel.github.io/calendar-planner/index.html. The code is available to be cloned from the calendar-planner repository, using git commands. To access this, please follow this URL: https://github.com/MichaelFriel/calendar-planner.
 
-**Usage Guide**
+## Usage Guide
 
 The usage for this guide is intuitive and can be clearly understood upon page load.
 * The top of the page showcases the current date.
