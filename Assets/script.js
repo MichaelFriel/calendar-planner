@@ -59,16 +59,10 @@ $('.saveBtn').click(function () {
 
     localStorage.setItem(key, description);
 
-    // Load description text if in localstorage
 
-    
-
-    $('#input-9AM').html(localStorage.getItem("Schedule - 9AM"));
-
-    
 })
 
-
+// load description text upon page reload
 
 function init () {
 
