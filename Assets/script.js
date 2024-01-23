@@ -1,9 +1,15 @@
 $(document).ready(function() {
 
+//     var advancedFormat = require('dayjs/plugin/advancedFormat')
+// dayjs.extend(advancedFormat)
+
+
+
 const currentDate = dayjs();
 const currentHour = dayjs().hour();
 console.log(currentHour);
-const formattedDate = currentDate.format("dddd, MMMM D, YYYY");
+const formattedDate = currentDate.format("dddd, MMMM Do, YYYY");
+let descriptionStored = ''
 const currentDateEL = document.querySelector('#currentDay')
 const descriptionEL = document.querySelector('.description');
 
@@ -21,7 +27,7 @@ schedule += `
         <div class="col-1 hour">
           <strong>${times[i]}</strong>
       </div>
-            <textarea class="col-10 description" id="input-${times[i]}" data-time="${i}"></textarea>
+            <textarea class="col-10 description" id="input-${times[i]}" data-time="${i}">${descriptionStored}</textarea>
               <button class="col-1 saveBtn" id ="btn-${times[i]}"><i class="fas fa-save" ></i></button>
           </div> `;
 }
@@ -31,7 +37,7 @@ $('#schedule').html(schedule);
 // Add colours depending on time.
 
 let allSchedules = document.querySelectorAll('.description')
-console.log(allSchedules.length);
+
 for (let i=0; i < allSchedules.length; i++) {
 
   let timeData = allSchedules[i].dataset.time;
@@ -48,31 +54,30 @@ if (timeData < currentHour) {
 
 }
 
-// console.log(allSchedules);
+// Save Data in local storage.
 
-// Save Data 
 $('.saveBtn').click(function () {
     let buttonID = $(this).attr('id');
     let time = buttonID.replace('btn-', ''); // Is there a way to use jQuery here?
-    let timeData = $()
+    // let timeData = $()
 
     let description = $('#input-' + time).val();
     let key = 'Schedule - ' + time;
 
     localStorage.setItem(key, description);
+
+    // Load description text if in localstorage
+
+    
+
+    $('#input-9AM').html(localStorage.getItem("Schedule - 9AM"));
+
+    // loop through allSchedules, if local storage key = "Schedule - dataset.time", then get local storage and populate html.
+
+
+    // let descriptionStored = $('#input-(time).html(localStorage.getItem("Schedule - (time)"))
+    
 })
-
-// Colour changing
-
-// Find a way to associate current time with an index in the times array.
-// Add to the for loop, to add a class to the row of either past, present or future.
-// Possibly pass an additional item into local storage, which is the time in 24hr format. 
-
-
-
-
-
-
 
 
 // let totalSchedule = JSON.parse(localStorage.getItem ("Schedule") || "[]");
@@ -86,6 +91,40 @@ $('.saveBtn').click(function () {
 //     time;
 //     description
 // })
+
+function init () {
+
+    let nineAmLocal = localStorage.getItem ("Schedule - 9AM");
+    $('#input-9AM').val(nineAmLocal);
+
+    let tenAmLocal = localStorage.getItem ("Schedule - 10AM");
+    $('#input-10AM').val(tenAmLocal);
+
+    let elevenAmLocal = localStorage.getItem ("Schedule - 11AM");
+    $('#input-11AM').val(elevenAmLocal);
+
+    let twelvePmLocal = localStorage.getItem ("Schedule - 12PM");
+    $('#input-12PM').val(twelvePmLocal);
+
+    let onePmLocal = localStorage.getItem ("Schedule - 1PM");
+    $('#input-1PM').val(onePmLocal);
+
+    let twoPmLocal = localStorage.getItem ("Schedule - 2PM");
+    $('#input-2PM').val(twoPmLocal);
+
+    let threePmLocal = localStorage.getItem ("Schedule - 3PM");
+    $('#input-3PM').val(threePmLocal);
+
+    let fourPmLocal = localStorage.getItem ("Schedule - 4PM");
+    $('#input-4PM').val(fourPmLocal);
+
+    let fivePmLocal = localStorage.getItem ("Schedule - 5PM");
+    $('#input-5PM').val(fivePmLocal);
+}
+
+
+
+init ()
 
 });
 
