@@ -66,35 +66,17 @@ $('.saveBtn').click(function () {
 
 function init () {
 
-    let nineAmLocal = localStorage.getItem ("Schedule - 9AM");
-    $('#input-9AM').val(nineAmLocal);
+        var times = ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM'];
+    
+        times.forEach(function(time) {
+            var scheduleLocal = localStorage.getItem("Schedule - " + time);
+            $('#input-' + time).val(scheduleLocal);
+        });
+    }
 
-    let tenAmLocal = localStorage.getItem ("Schedule - 10AM");
-    $('#input-10AM').val(tenAmLocal);
 
-    let elevenAmLocal = localStorage.getItem ("Schedule - 11AM");
-    $('#input-11AM').val(elevenAmLocal);
+    init ()
 
-    let twelvePmLocal = localStorage.getItem ("Schedule - 12PM");
-    $('#input-12PM').val(twelvePmLocal);
-
-    let onePmLocal = localStorage.getItem ("Schedule - 1PM");
-    $('#input-1PM').val(onePmLocal);
-
-    let twoPmLocal = localStorage.getItem ("Schedule - 2PM");
-    $('#input-2PM').val(twoPmLocal);
-
-    let threePmLocal = localStorage.getItem ("Schedule - 3PM");
-    $('#input-3PM').val(threePmLocal);
-
-    let fourPmLocal = localStorage.getItem ("Schedule - 4PM");
-    $('#input-4PM').val(fourPmLocal);
-
-    let fivePmLocal = localStorage.getItem ("Schedule - 5PM");
-    $('#input-5PM').val(fivePmLocal);
-}
-
-init ()
 
 });
 
